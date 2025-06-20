@@ -17,6 +17,6 @@
     "dc-bot"
   ],
   "author": "F40",
-  "license": "N/A",
+  "license": "GPL-3.0-only",
   "description": "A Discord bot."
 }
