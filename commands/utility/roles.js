@@ -1,20 +1,24 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
-const colorEmbed = new EmbedBuilder()
-	.setColor(0x0099FF)
-	.setTitle('COLORS')
-	.setDescription('@red\n@blue\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ᶜᵒˡᵒʳ')
-const ageEmbed = new EmbedBuilder()
-	.setColor(0x0099FF)
-	.setTitle('AGE')
-	.setDescription('@18-\n@18+\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ʳᵒˡᵉ')
-const serverEmbed = new EmbedBuilder()
-	.setColor(0x0099FF)
-	.setTitle('SERVER')
-	.setDescription('@announcements\n@chat revive\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ʳᵒˡᵉ')
-const locationEmbed = new EmbedBuilder()
-	.setColor(0x0099FF)
-	.setTitle('LOCATION')
-	.setDescription('@na\n@eu\n@as\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ʳᵒˡᵉ')
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('roles')
+    .setDescription('Shows available roles'),
 
-channel.send({ embeds: [colorEmbed, ageEmbed, serverEmbed] });
+  async execute(interaction) {
+    const colorEmbed = new EmbedBuilder()
+      .setColor(0x0099FF)
+      .setTitle('COLORS')
+      .setDescription('@red\n@blue\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ᶜᵒˡᵒʳ');
+    const ageEmbed = new EmbedBuilder()
+      .setColor(0x0099FF)
+      .setTitle('AGE')
+      .setDescription('@18-\n@18+\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ʳᵒˡᵉ');
+    const serverEmbed = new EmbedBuilder()
+      .setColor(0x0099FF)
+      .setTitle('SERVER')
+      .setDescription('@announcements\n@chat revive\n\nᴿᵉᵃᶜᵗ ᵗᵒ ᵍᶦᵛᵉ ʸᵒᵘʳˢᵉˡᶠ ᵃ ʳᵒˡᵉ');
+
+    await interaction.reply({ embeds: [colorEmbed, ageEmbed, serverEmbed] });
+  }
+};
