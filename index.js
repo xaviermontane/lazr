@@ -46,7 +46,7 @@ for (const file of eventFiles) {
 }
 
 // Log in with the bot's token
-client.login(process.env.token);
+client.login(process.env.TOKEN);
 console.log('API key loaded...');
 
 // Log a message when the bot is ready
