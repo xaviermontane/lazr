@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "discord.js": "^14.20.0",
-    "dotenv": "^16.4.5"
+    "discord.js": "^14.21.0",
+    "dotenv": "^16.6.1"
   },
   "name": "bot",
   "version": "1.0.0",
@@ -18,5 +18,14 @@
   ],
   "author": "F40",
   "license": "GPL-3.0-only",
-  "description": "A Discord bot."
+  "description": "A Discord bot.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaviermontane/lazr.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/xaviermontane/lazr/issues"
+  },
+  "homepage": "https://github.com/xaviermontane/lazr#readme"
 }
