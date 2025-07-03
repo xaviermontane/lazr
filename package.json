@@ -10,8 +10,8 @@
     "eslint": "^9.7.0"
   },
   "scripts": {
-    "main": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
   },
   "keywords": [
     "dc-bot"
