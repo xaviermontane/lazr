@@ -21,7 +21,7 @@ function loadCommands(client) {
 
 	for (const folder of commandFolders) {
 		const folderPath = path.join(commandsDir, folder);
-		const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+		const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
 		for (const file of commandFiles) {
 			const filePath = path.join(folderPath, file);
 			const command = require(filePath);
@@ -49,6 +49,9 @@ function loadEvents(client) {
 		}
 	}
 }
+
+loadCommands(client);
+loadEvents(client);
 
 // Log in with the bot's token
 client.login(process.env.TOKEN);
