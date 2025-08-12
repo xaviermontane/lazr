@@ -60,12 +60,3 @@ loadEvents(client);
 // Log in with the bot's token
 client.login(process.env.TOKEN);
 console.log('API key loaded...');
-
-// Log a message when the bot is ready
-let verbose = false;
-
-if (verbose) {
-	client.on('ready', () => {
-		client.channels.cache.get('1184611670971133974').send('Bot is online!');
-	});
-}
