@@ -3,7 +3,7 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
 
-// Create a new client (bot) instance
+// Create a new client instance
 const client = new Client({
 	intents: [
 	  GatewayIntentBits.Guilds,
@@ -47,19 +47,6 @@ function loadEvents(client) {
 		} else {
 			client.on(event.name, (...args) => event.execute(...args));
 		}
-	}
-}
-
-const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
-
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
 
