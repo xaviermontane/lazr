@@ -27,12 +27,14 @@ npm run deploy
 
 ## Configuration
 
-Create a `.env` file in the root directory with the following variables:
+Create a `config.json` file in the root directory with the following structure:
 
-```
-TOKEN=your-bot-token
-CLIENT_ID=your-client-id
-GUILD_ID=your-guild-id
+```json
+{
+    "token": "your-bot-token",
+    "clientId": "your-client-id",
+    "guildId": "your-guild-id"
+}
 ```
 
 ## License
