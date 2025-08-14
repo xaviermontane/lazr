@@ -1,7 +1,7 @@
+const config = require('config.json')
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-require('dotenv').config();
 
 // Create a new client instance
 const client = new Client({
@@ -58,5 +58,5 @@ loadCommands(client);
 loadEvents(client);
 
 // Log in with the bot's token
-client.login(process.env.TOKEN);
+client.login(config.token);
 console.log('API key loaded...');

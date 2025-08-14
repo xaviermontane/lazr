@@ -4,7 +4,7 @@ module.exports = {
     name: Events.GuildMemberAdd,
     once: false,
     execute(member) {
-        const channelId = process.env.WELCOMER_ID;
+        const channelId = config.welcomeChannelID;
         try {
             const welcomeEmbed = new EmbedBuilder()
                 .setColor('#0099ff')
