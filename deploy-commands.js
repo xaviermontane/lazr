@@ -1,5 +1,5 @@
 const { REST, Routes } = require('discord.js');
-const config = require('config.js');
+const config = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -25,7 +25,7 @@ for (const folder of commandFolders) {
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST().setToken(config.TOKEN);
+const rest = new REST().setToken(config.token);
 
 // and deploy your commands!
 (async () => {
@@ -33,7 +33,7 @@ const rest = new REST().setToken(config.TOKEN);
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		await rest.put(
-			Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
+			Routes.applicationGuildCommands(config.ownerID, config.guildID),
 			{ body: commands },
 		);
 
