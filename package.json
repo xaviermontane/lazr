@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "discord.js": "^14.21.0",
-    "dotenv": "^16.6.1"
+    "esbuild": "^0.25.9"
   },
   "name": "bot",
   "version": "1.0.0",
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "deploy": "node deploy-commands.js"
+    "deploy": "node deploy-commands.js",
+    "build": "esbuild src/index.js --bundle --platform=node --target=node20 --outfile=dist/index.js"
   },
   "keywords": [
     "dc-bot"
