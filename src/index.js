@@ -63,9 +63,24 @@ function loadEvents(client) {
 	}
 }
 
-// Initialize bot
-loadCommands(client);
-loadEvents(client);
+// Initialize bot with error handling
+async function initializeBot() {
+    try {
+        console.log('[INFO] Starting bot initialization...');
+        
+        // Load components
+        loadCommands(client);
+        loadEvents(client);
+        
+        // Login with timeout
+        console.log('[INFO] Attempting to login...');
+        await client.login(config.token);
+        
+    } catch (error) {
+        console.error('[FATAL] Failed to initialize bot:', error.message);
+        process.exit(1);
+    }
+}
 
-console.log('API key loaded...');
-client.login(config.token);
+// Start the bot
+initializeBot();
