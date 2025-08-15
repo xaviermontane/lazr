@@ -2,6 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
+// Configuration with validation
+const config = {
+    token: process.env.BOT_TOKEN,
+    prefix: process.env.BOT_PREFIX || '/'
+};
+
+if (!config.token) {
+    console.error('[FATAL] BOT_TOKEN environment variable is required');
+    process.exit(1);
+}
+
 // Create client
 const client = new Client({
 	intents: [
