@@ -1,0 +1,14 @@
+node_modules
+config.json
+dist
+tests
+coverage
+.env
+.git
+.vscode
+.DS_Store
+.nyc_output
+*.log
+*.tgz
+*.cache
+*.tsbuildinfo
