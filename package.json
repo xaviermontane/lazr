@@ -12,8 +12,8 @@
     "globals": "^16.3.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "deploy": "node deploy-commands.js",
+    "start": "node src/index.js",
+    "deploy": "node src/deploy-commands.js",
     "build": "esbuild src/index.js --bundle --platform=node --target=node20 --outfile=dist/index.js"
   },
   "keywords": [
