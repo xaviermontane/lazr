@@ -1,7 +1,15 @@
-const config = require('../config.json')
-const fs = require('node:fs');
-const path = require('node:path');
+const fs = require('fs');
+const path = require('path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+
+// Load configuration
+let config = {};
+try {
+  const configPath = path.resolve(__dirname, '../config.json');
+  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+} catch (err) {
+    console.error('Error reading config file:', err);
+}
 
 // Create a new client instance
 const client = new Client({
