@@ -21,7 +21,7 @@ const client = new Client({
 	],
 });
 
-// Load all commands into client.commands
+// Function definitions
 function loadCommands(client) {
     const commandsDir = path.join(__dirname, 'commands');
     client.commands = new Collection();
@@ -46,7 +46,6 @@ function loadCommands(client) {
     }
 }
 
-// Load all events and register them with the client
 function loadEvents(client) {
 	const eventsDir = path.join(__dirname, 'events');
 	const eventFiles = fs.readdirSync(eventsDir).filter(file => file.endsWith('.js'));
@@ -62,9 +61,9 @@ function loadEvents(client) {
 	}
 }
 
+// Initialize bot
 loadCommands(client);
 loadEvents(client);
 
-// Log in with the bot's token
-client.login(config.token);
 console.log('API key loaded...');
+client.login(config.token);
