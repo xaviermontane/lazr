@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    build: .
+    container_name: lazr-bot
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - BOT_TOKEN=${BOT_TOKEN}
+      - BOT_PREFIX=${BOT_PREFIX:-/}
+    volumes:
+      - ./logs:/app/logs:rw
+      - ./config:/app/config:ro
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD", "node"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+
+networks:
+  bot-network:
+    driver: bridge
