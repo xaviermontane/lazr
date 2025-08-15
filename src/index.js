@@ -5,10 +5,12 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 // Load configuration
 let config = {};
 try {
-  const configPath = path.resolve(__dirname, '../config.json');
+  const configPath = path.resolve(__dirname, '../../config.json');
   config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 } catch (err) {
-    console.error('Error reading config file:', err);
+  console.warn('No config.json found, falling back to env vars');
+  config.token = process.env.BOT_TOKEN;
+  config.prefix = process.env.BOT_PREFIX || '/';
 }
 
 // Create a new client instance
