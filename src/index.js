@@ -2,18 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
-// Load configuration
-let config = {};
-try {
-  const configPath = path.resolve(__dirname, '../../config.json');
-  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-} catch (err) {
-  console.warn('No config.json found, falling back to env vars');
-  config.token = process.env.BOT_TOKEN;
-  config.prefix = process.env.BOT_PREFIX || '/';
-}
-
-// Create a new client instance
+// Create client
 const client = new Client({
 	intents: [
 	  GatewayIntentBits.Guilds,
@@ -25,7 +14,7 @@ const client = new Client({
 
 // Function definitions
 function loadCommands(client) {
-    const commandsDir = path.join(__dirname, 'commands');
+    const commandsDir = path.join(__dirname, 'src', 'commands');
     client.commands = new Collection();
 
     try {
@@ -49,7 +38,7 @@ function loadCommands(client) {
 }
 
 function loadEvents(client) {
-	const eventsDir = path.join(__dirname, 'events');
+	const eventsDir = path.join(__dirname, 'src', 'events');
 	const eventFiles = fs.readdirSync(eventsDir).filter(file => file.endsWith('.js'));
 
 	for (const file of eventFiles) {
