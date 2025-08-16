@@ -4,9 +4,6 @@
 # Node modules
 node_modules/
 
-# Test files
-tests/
-
 # Sensitive data
 .env
 config.json
