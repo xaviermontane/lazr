@@ -1,11 +1,11 @@
 const { Events, EmbedBuilder } = require('discord.js');
-const config = require('../../config.json')
+require('dotenv').config();
 
 module.exports = {
     name: Events.GuildMemberAdd,
     once: false,
     execute(member) {
-        const channelId = config.welcomeChannelID;
+        const channelId = process.env.WELCOME_CHANNEL_ID;
         try {
             const welcomeEmbed = new EmbedBuilder()
                 .setColor('#0099ff')
