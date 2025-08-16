@@ -7,22 +7,24 @@ module.exports = {
 
 		const command = interaction.client.commands.get(interaction.commandName);
 
-        if (!command) {
-            console.error(`Command not found: ${interaction.commandName}`);
-            return;
-        }
+		if (!command) {
+			console.error(`Command not found: ${interaction.commandName}`);
+			return;
+		}
 
 		try {
 			await command.execute(interaction);
-            console.log(`
+			console.log(`
             [${new Date().toLocaleTimeString()}] @${interaction.user.tag} in #${interaction.channel.name} 
             at ${interaction.guild.name} used the command: /${interaction.commandName}
             `);
-		} catch (error) {
+		}
+		catch (error) {
 			console.error(error);
 			if (interaction.replied || interaction.deferred) {
 				await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-			} else {
+			}
+			else {
 				await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 			}
 		}
