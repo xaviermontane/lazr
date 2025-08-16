@@ -1,0 +1,16 @@
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Set the OS, Node.js version, and other tools you might need
+build:
+  os: ubuntu-24.04
+  tools:
+    nodejs: "20"
+
+  commands:
+    - npm ci
+    - npm run docs:build
+    - cp -r docs/build/html $READTHEDOCS_OUTPUT/html
