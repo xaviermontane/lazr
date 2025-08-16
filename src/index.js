@@ -25,9 +25,9 @@ const client = new Client({
 });
 
 // Function definitions
-function loadCommands(client) {
+function loadCommands(botClient) {
 	const commandsDir = path.join(__dirname, '../src/commands');
-	client.commands = new Collection();
+	botClient.commands = new Collection();
 
 	try {
 		const commandFolders = fs.readdirSync(commandsDir);
@@ -38,7 +38,7 @@ function loadCommands(client) {
 				const filePath = path.join(folderPath, file);
 				const command = require(filePath);
 				if ('data' in command && 'execute' in command) {
-					client.commands.set(command.data.name, command);
+					botClient.commands.set(command.data.name, command);
 				}
 				else {
 					console.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
@@ -51,7 +51,7 @@ function loadCommands(client) {
 	}
 }
 
-function loadEvents(client) {
+function loadEvents(botClient) {
 	const eventsDir = path.join(__dirname, '../src/events');
 	const eventFiles = fs.readdirSync(eventsDir).filter(file => file.endsWith('.js'));
 
@@ -59,10 +59,10 @@ function loadEvents(client) {
 		const filePath = path.join(eventsDir, file);
 		const event = require(filePath);
 		if (event.once) {
-			client.once(event.name, (...args) => event.execute(...args));
+			botClient.once(event.name, (...args) => event.execute(...args));
 		}
 		else {
-			client.on(event.name, (...args) => event.execute(...args));
+			botClient.on(event.name, (...args) => event.execute(...args));
 		}
 	}
 }
