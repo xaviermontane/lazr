@@ -4,6 +4,9 @@
 # Node modules
 node_modules/
 
+# Tests output
+coverage/
+
 # Sensitive data
 .env
 config.json
