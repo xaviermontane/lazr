@@ -1,5 +1,9 @@
 # Lazr Discord Bot
 
+![CI](https://img.shields.io/github/actions/workflow/status/xaviermontane/lazr/ci.yml?branch=main&style=flat-round)
+![License](https://img.shields.io/github/license/xaviermontane/lazr?style=flat-round)
+![GitHub last commit](https://img.shields.io/github/last-commit/xaviermontane/lazr?style=flat-round)
+
 A modular Discord bot built with [discord.js](https://discord.js.org/).
 
 ## Features
