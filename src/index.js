@@ -26,7 +26,7 @@ const client = new Client({
 
 // Function definitions
 function loadCommands(botClient) {
-	const commandsDir = path.join(__dirname, '../src/commands');
+	const commandsDir = path.join(__dirname, 'commands');
 	botClient.commands = new Collection();
 
 	try {
@@ -52,7 +52,7 @@ function loadCommands(botClient) {
 }
 
 function loadEvents(botClient) {
-	const eventsDir = path.join(__dirname, '../src/events');
+	const eventsDir = path.join(__dirname, 'events');
 	const eventFiles = fs.readdirSync(eventsDir).filter(file => file.endsWith('.js'));
 
 	for (const file of eventFiles) {
