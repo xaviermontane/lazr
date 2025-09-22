@@ -1,5 +1,8 @@
 FROM node:20-bookworm-slim
 
+# Update system packages to patch vulnerabilities
+RUN apt-get update && apt-get upgrade -y && apt-get clean
+
 # Create non-root user
 RUN useradd -m botuser
 
