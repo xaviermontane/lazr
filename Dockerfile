@@ -10,10 +10,9 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY src/ ./src/
-COPY src/index.js ./index.js
 
 # Lock down filesystem
 RUN chmod -R a-w /app
 USER botuser
 
-CMD ["node", "index.js"]
+CMD ["node", "src/index.js"]

@@ -50,6 +50,12 @@ test('Command files should have proper structure', () => {
 		const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
 
 		for (const file of commandFiles) {
+			// Skip utility files that aren't commands
+			if (file === 'logger.js') {
+				console.log(`   Skipping utility file: ${folder}/${file}`);
+				continue;
+			}
+
 			const commandPath = path.join(folderPath, file);
 			const command = require(commandPath);
 
