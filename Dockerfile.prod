@@ -1,0 +1,39 @@
+# Multi-stage production Dockerfile
+ARG NODE_IMAGE=node:20-bookworm-slim
+FROM ${NODE_IMAGE} AS base
+
+# Install security updates
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -s /bin/bash botuser
+
+WORKDIR /app
+
+# Dependencies stage
+FROM base AS deps
+COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Production stage
+FROM base AS production
+COPY --from=deps /app/node_modules ./node_modules
+COPY --chown=botuser:botuser src/ ./src/
+COPY --chown=botuser:botuser package*.json ./
+
+# Create logs directory with proper ownership
+RUN mkdir -p /app/logs && chown -R botuser:botuser /app/logs
+
+# Security hardening
+RUN chmod -R a-w /app && \
+    find /app -type f -exec chmod 644 {} \; && \
+    find /app -type d -exec chmod 755 {} \; && \
+    chmod 755 /app/logs
+
+USER botuser
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD node -e "process.exit(0)" || exit 1
+
+CMD ["node", "src/index.js"]

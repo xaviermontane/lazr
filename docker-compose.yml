@@ -15,7 +15,7 @@ services:
     networks:
       - bot-network
     healthcheck:
-      test: ["CMD", "node"]
+      test: ["CMD", "node", "-e", "process.exit(0)"]
       interval: 30s
       timeout: 10s
       retries: 3
