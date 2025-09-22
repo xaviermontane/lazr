@@ -1,3 +1,5 @@
+const logger = require('../utils/logger');
+
 module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction) {
@@ -23,9 +25,9 @@ module.exports = {
 		if (!command) {
 			console.error(`
 ✦ Command not found! ✦
-User @${interaction.user.tag} tried /${interaction.commandName} in #${interaction.channel.name}
+User @${interaction.user.tag} tried /${interaction.commandName} at ${new Date().toLocaleTimeString()}
 
-[${new Date().toLocaleTimeString()}] Executed on ${interaction.guild.name}#${interaction.guild.id}
+➤ Executed on ${interaction.guild.name}#${interaction.channel.name}
 			`);
 			return;
 		}
@@ -34,28 +36,30 @@ User @${interaction.user.tag} tried /${interaction.commandName} in #${interactio
 			await command.execute(interaction);
 			console.log(`
 ✦ Command completed successfully! ✦
-User @${interaction.user.tag} used /${interaction.commandName} in #${interaction.channel.name}
+User @${interaction.user.tag} used /${interaction.commandName} at ${new Date().toLocaleTimeString()}
 
-[${new Date().toLocaleTimeString()}] Executed on ${interaction.guild.name}#${interaction.guild.id}
+➤ Executed on ${interaction.guild.name}#${interaction.channel.name}
 			`);
-			console.log('[METADATA]', JSON.stringify(meta, null, 2));
+			// Save metadata to log file only (not console)
+			logger.info(`Command executed: ${interaction.commandName}`, meta);
 		}
 		catch (error) {
 			console.error(`
 ✦ Command failed! ✦
-User @${interaction.user.tag} used /${interaction.commandName} in #${interaction.channel.name}
+User @${interaction.user.tag} used /${interaction.commandName} at ${new Date().toLocaleTimeString()}
 
-[${new Date().toLocaleTimeString()}] Executed on ${interaction.guild.name}#${interaction.guild.id}
+➤ Executed on ${interaction.guild.name}#${interaction.guild.id}
 Error: ${error.message}
 			`);
-			console.error('[METADATA]', JSON.stringify({
+			// Save detailed error metadata to log file only (not console)
+			logger.error(`Command failed: ${interaction.commandName}`, {
 				...meta,
 				error: {
 					message: error.message,
 					stack: error.stack,
 					name: error.name,
 				},
-			}, null, 2));
+			});
 			if (interaction.replied || interaction.deferred) {
 				await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
 			}
