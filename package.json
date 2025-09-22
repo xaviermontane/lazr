@@ -8,6 +8,7 @@
     "dev": "nodemon src/index.js",
     "docker:build": "docker build -t lazr-bot .",
     "docker:run": "docker run --rm --env-file .env lazr-bot",
+    "docker:run:secure": "docker run --rm -e DISCORD_TOKEN -e NODE_ENV lazr-bot",
     "docker:compose:up": "docker-compose up -d",
     "docker:compose:down": "docker-compose down",
     "docker:compose:logs": "docker-compose logs -f discord-bot",
