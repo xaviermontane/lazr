@@ -1,7 +1,8 @@
+const { Events } = require('discord.js');
 const logger = require('../utils/logger');
 
 module.exports = {
-	name: 'interactionCreate',
+	name: Events.InteractionCreate,
 	async execute(interaction) {
 		const meta = {
 			user: {
