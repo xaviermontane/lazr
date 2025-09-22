@@ -9,7 +9,6 @@ coverage/
 
 # Sensitive data
 .env
-config.json
 
 # Log files
 logs/
