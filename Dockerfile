@@ -11,8 +11,10 @@ RUN npm ci --omit=dev
 
 COPY src/ ./src/
 
-# Lock down filesystem
-RUN chmod -R a-w /app
+# Set proper permissions and switch user
+RUN chown -R botuser:botuser /app && \
+    chmod -R 755 /app && \
+    find /app -type f -exec chmod 644 {} \;
 USER botuser
 
 CMD ["node", "src/index.js"]
