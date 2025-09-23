@@ -5,16 +5,18 @@ module.exports = {
 	name: Events.GuildMemberAdd,
 	once: false,
 	execute(member) {
+		console.log(`[GUILD] New member joined: ${member.user.tag} (${member.user.id})`);
+
 		const channelId = process.env.WELCOME_CHANNEL_ID;
 		try {
 			const welcomeEmbed = new EmbedBuilder()
 				.setColor('#0099ff')
-				.setTitle('Welcome to the server!')
-				.setDescription('We are glad to have you here!')
+				.setTitle('Welcome to /zero')
+				.setDescription('We are thrilled to have you here!')
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 				.addFields(
 					{ name: 'Get Started', value: 'Chat with us in #general!' },
-					{ name: 'Rules', value: 'Please make sure to read the #rules channel.' },
+					{ name: 'Rules', value: 'Please make sure to read the #rules.' },
 				)
 				.setTimestamp()
 				.setFooter({ text: 'Enjoy your stay!', iconURL: member.guild.iconURL({ dynamic: true }) });
@@ -25,7 +27,7 @@ module.exports = {
 			}
 		}
 		catch (error) {
-			console.error('Failed to send welcome embed:', error);
+			console.error('[GUILD] Failed to send welcome embed:', error);
 		}
 	},
 };
