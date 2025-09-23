@@ -5,7 +5,7 @@ module.exports = {
 		.setName('kick')
 		.setDescription('Kick a member from the server.')
 		.addUserOption(option =>
-			option.setName('target')
+			option.setName('user')
 				.setDescription('The member to kick')
 				.setRequired(true))
 		.addStringOption(option =>
@@ -22,22 +22,22 @@ module.exports = {
 			return interaction.reply({ content: 'You do not have permission to kick members.', ephemeral: true });
 		}
 
-		const target = interaction.options.getMember('target');
+		const user = interaction.options.getMember('user');
 		const reason = interaction.options.getString('reason') || 'No reason provided';
 
-		if (!target) {
+		if (!user) {
 			return interaction.reply({ content: 'User not found.', ephemeral: true });
 		}
 
-		if (!target.kickable) {
+		if (!user.kickable) {
 			return interaction.reply({ content: 'I cannot kick this user.', ephemeral: true });
 		}
 
-		if (target.id === interaction.user.id) {
+		if (user.id === interaction.user.id) {
 			return interaction.reply({ content: 'You cannot kick yourself.', ephemeral: true });
 		}
 
-		await target.kick(reason);
-		await interaction.reply({ content: `Kicked ${target.user.tag}. Reason: ${reason}` });
+		await user.kick(reason);
+		await interaction.reply({ content: `Kicked ${user.user.tag}. Reason: ${reason}` });
 	},
 };
