@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,7 +11,12 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('reason')
 				.setDescription('Reason for kicking')
-				.setRequired(false)),
+				.setRequired(false))
+		.addBooleanOption(option =>
+			option.setName('silent')
+				.setDescription('Kick without notifying the user')
+				.setRequired(false))
+		.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
 	async execute(interaction) {
 		if (!interaction.member.permissions.has('KickMembers')) {
 			return interaction.reply({ content: 'You do not have permission to kick members.', ephemeral: true });
