@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "deploy": "node src/deploy-commands.js",
     "docker:build": "docker build -t lazr-bot .",
     "docker:build:prod": "docker build -f Dockerfile.prod -t lazr-bot:prod .",
     "docker:run": "docker run --rm --env-file .env -u $(id -u):$(id -g) -v $(pwd):/app lazr-bot",
