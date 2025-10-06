@@ -57,6 +57,14 @@ npm run docker:build
 npm run docker:run
 ```
 
+## Contributing
+
+Whether it's big or small, we love contributions. Check out our [contribution file](https://github.com/xaviermontane/lazr/contributing) to see how to get started.
+
+Not sure where to get started? You can:
+
+Join our [Discord](https://discord.gg/aYXTQUB2QH), and ask us any questions there.
+
 ## License
 
 [GPL-3.0-only](LICENSE)
