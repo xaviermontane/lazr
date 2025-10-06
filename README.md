@@ -59,7 +59,7 @@ npm run docker:run
 
 ## Contributing
 
-Whether it's big or small, we love contributions. Check out our [contribution file](https://github.com/xaviermontane/lazr/contributing) to see how to get started.
+Whether it's big or small, we love contributions. Check out our [contribution file](https://github.com/xaviermontane/lazr/blob/main/CONTRIBUTING.md) to see how to get started.
 
 Not sure where to get started? You can:
 
