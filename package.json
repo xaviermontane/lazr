@@ -16,8 +16,9 @@
     "docker:compose:down": "docker-compose down",
     "docker:compose:logs": "docker-compose logs -f discord-bot",
     "docker:compose:restart": "docker-compose restart discord-bot",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-pattern docs/",
     "test": "node test-runner.js",
+    "docs:build": "jsdoc -c jsdoc.json",
     "test:ci": "node test-runner.js"
   },
   "keywords": [
@@ -36,8 +37,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "docdash": "^2.0.2",
     "eslint": "^9.36.0",
-    "globals": "^16.3.0"
+    "globals": "^16.3.0",
+    "jsdoc": "^4.0.5"
   },
   "engines": {
     "node": ">=18.0.0"
